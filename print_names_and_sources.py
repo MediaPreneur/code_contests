@@ -30,8 +30,7 @@ def _all_problems(filenames):
   """Iterates through all ContestProblems in filenames."""
   for filename in filenames:
     reader = riegeli.RecordReader(io.FileIO(filename, mode='rb'),)
-    for problem in reader.read_messages(contest_problem_pb2.ContestProblem):
-      yield problem
+    yield from reader.read_messages(contest_problem_pb2.ContestProblem)
 
 
 def _print_names_and_sources(filenames):
